@@ -2,7 +2,7 @@ package dev.filipeabs.dao;
 
 import java.util.List;
 
-import dev.filipeabs.models.SecondDb;
+import dev.filipeabs.models.ModelDb;
 import io.quarkus.hibernate.orm.PersistenceUnit;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
@@ -15,15 +15,15 @@ public class SecondDbDao {
     @PersistenceUnit("second")
     EntityManager em;
 
-    public List<SecondDb> listAll() {
-        String querySelectAll = "FROM SecondDb";
-        return em.createQuery(querySelectAll, SecondDb.class)
+    public List<ModelDb> listAll() {
+        String querySelectAll = "FROM ModelDb";
+        return em.createQuery(querySelectAll, ModelDb.class)
                 .getResultList();
     }
 
     @Transactional
     public void insert(String stringField) {
-        SecondDb entityInsert = new SecondDb();
+        ModelDb entityInsert = new ModelDb();
         entityInsert.field = stringField;
         em.persist(entityInsert);
     }

@@ -6,14 +6,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "INFORMACOES", schema = "MYDB")
-public class FirstDb implements Serializable {
+public class ModelDb implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_entity_id_seq")
+    @SequenceGenerator(name = "my_entity_id_seq", sequenceName = "INFORMACOES_SEQ", allocationSize = 1)
     @Column(name = "ID", nullable = false)
     public int id;
 
